@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { isLastCharOperator } from '../../../utils';
+import { isLastCharOperator, deleteNotNeededZeros } from '../../../utils';
 
 type Props = {
   setDisplayValue: (displayValue: string) => void,
@@ -14,7 +14,7 @@ const Memory: React.FC<Props> = ({ setDisplayValue, displayValue }) => {
   const showOnDisplay = () => {
     try {
       const content = eval(memory.replace(/\s/g, ''));
-      setDisplayValue(content.toString());
+      setDisplayValue(deleteNotNeededZeros(content.toFixed(5)));
     } catch {
       setDisplayValue("Что-то пошло не так");
     }
